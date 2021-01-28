@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>First_lesson</title>
+
+    <body>
+        <script>
+            //First task
+            var temperatureCelsius = +prompt("Укажите температуру в градусах по Цельсию:", 25);
+            var temperatureFahrenheit = (9 / 5) * temperatureCelsius + 32;
+            alert("Температура по Фаренгейту составит: " + temperatureFahrenheit + " градусов!");
+            
+            //Second task
+            var firstVariable = +prompt("Укажите первое число:", 50);
+            var secondVariable = +prompt("Укажите второе число:", 70);
+            firstVariable = firstVariable + secondVariable;
+            secondVariable = firstVariable - secondVariable;
+            firstVariable = firstVariable - secondVariable;
+            alert("Первое число поменяло значение и стало:  " + firstVariable + "\n" + " Второе число поменяло значение и стало: " + secondVariable);
+            
+            //Third task task
+            var name = "Василий";
+            var admin;
+            admin = name;
+            alert("Переменная admin приобрела значение:  " + admin);
+        </script>
+    </body>
+
+</html>
