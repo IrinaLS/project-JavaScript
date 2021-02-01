@@ -8,24 +8,134 @@
 
     <body>
         <script>
-            //First task
+            //LESSON 1 task 1
             var temperatureCelsius = +prompt("Укажите температуру в градусах по Цельсию:", 25);
             var temperatureFahrenheit = (9 / 5) * temperatureCelsius + 32;
             alert("Температура по Фаренгейту составит: " + temperatureFahrenheit + " градусов!");
-            
-            //Second task
+            //LESSON 1 task 2
             var firstVariable = +prompt("Укажите первое число:", 50);
             var secondVariable = +prompt("Укажите второе число:", 70);
             firstVariable = firstVariable + secondVariable;
             secondVariable = firstVariable - secondVariable;
             firstVariable = firstVariable - secondVariable;
             alert("Первое число поменяло значение и стало:  " + firstVariable + "\n" + " Второе число поменяло значение и стало: " + secondVariable);
-            
-            //Third task task
+            //LESSON 1 task 3
             var name = "Василий";
             var admin;
             admin = name;
             alert("Переменная admin приобрела значение:  " + admin);
+            //LESSON 2 task 3
+            var a = +prompt("Задайте значение первой переменной", 5);
+            var b = +prompt("Задайте значение второй переменной", 10);
+            if (a >= 0 && b >= 0) {
+                alert("Обе переменные положительные (>=0), а = " + a + " b = " + b + "\n" + " Их разность составит:  " + (a - b));
+            }
+            else if (a < 0 && b < 0) {
+                alert("Обе переменные отрицательные (<0), а = " + a + " b = " + b + "\n" + " Их произведение составит :  " + (a * b));
+            }
+            else {
+                alert("Переменные разных знаков, а = " + a + " b = " + b + "\n" + " Их сумма составит :  " + (a + b));
+            };
+            //LESSON 2 task 4
+            a = (Math.random() * 15).toFixed(0);
+            alert("Задана случайная переменная от 0 до 15, а = " + a + "\n" + " Нажмите \"ОК\" для вывода чисел от а до 15");
+            var b = "";
+            switch (a) {
+            case "0":
+                b = b + "0, ";
+            case "1":
+                b = b + "1, ";
+            case "2":
+                b = b + "2, ";
+            case "3":
+                b = b + "3, ";
+            case "4":
+                b = b + "4, ";
+            case "5":
+                b = b + "5, ";
+            case "6":
+                b = b + "6, ";
+            case "7":
+                b = b + "7, ";
+            case "8":
+                b = b + "8, ";
+            case "9":
+                b = b + "9, ";
+            case "10":
+                b = b + "10, ";
+            case "11":
+                b = b + "11, ";
+            case "12":
+                b = b + "12, ";
+            case "13":
+                b = b + "13, ";
+            case "14":
+                b = b + "14, ";
+            case "15":
+                b = b + "15";
+            };
+            alert("Последовательность от а = " + a + " до 15 составит: " + b);
+            //LESSON 2 task 5
+            function addition(a, b) {
+                return (a + b);
+            };
+
+            function subtraction(a, b) {
+                return (a - b);
+            };
+
+            function multiplication(a, b) {
+                return (a * b);
+            };
+
+            function division(a, b) {
+                return (a / b);
+            };
+            //LESSON 2 task 6
+            function mathOperation(arg1, arg2, operation) {
+                switch (operation) {
+                case "+":
+                    alert("Сумма чисел а" + arg1 + "и b " + arg2 + "равна " + addition(arg1, arg2));
+                    break;
+                case "-":
+                    alert("Разность чисел а и b равна " + subtraction(arg1, arg2));
+                    break;
+                case "*":
+                    alert("Произведение чисел а и b равно " + multiplication(arg1, arg2));
+                    break;
+                case "/":
+                    alert("Результат деления числа а на число b равен " + division(arg1, arg2));
+                    break;
+                default:
+                    alert("Вы ввели неверный арифметический знак");
+                };
+            }
+            a = +(Math.random() * 200 - 100).toFixed(0);
+            b = +(Math.random() * 200 - 100).toFixed(0);
+            var operation = prompt("Заданы две случайные переменные от -100 до 100, а = " + a + " b = " + b + " Укажите арифметическое действие (+ - * /), которое необходимо с ними выполнить:");
+            mathOperation(a, b, operation);
+            //LESSON 2 task 8
+            function power(val, pow) {
+                if (pow == 0) {
+                    return (result);
+                }
+                result = result * val;
+                pow = --pow;
+                power(val, pow)
+            };
+            var val = +(Math.random() * 10).toFixed(0);
+            var pow = +(Math.random() * 10).toFixed(0);
+            if (pow == 0) {
+                alert("Заданы два случайных числа от 0 до 10, val = " + val + " pow = " + pow + "\n" + "Результат возведения val в степень pow равен 1");
+            }
+            else if (val == 0) {
+                alert("Заданы два случайных числа от 0 до 10, val = " + val + " pow = " + pow + "\n" + "Результат возведения val в степень pow равен 0");
+            }
+            else {
+                var result = 1;
+                power(val, pow);
+                alert("Заданы два случайных числа от 0 до 10, val = " + val + " pow = " + pow + "\n" + "Результат возведения val в степень pow равен " + result);
+            };
         </script>
     </body>
 
