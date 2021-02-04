@@ -8,6 +8,75 @@
 
     <body>
         <script>
+            //LESSON 3 task 1
+            var number = 3;
+            var arr = [2];
+            while (number <= 100) {
+                var divider = 2;
+                var simpleNumber = true;
+                while (divider < (number / 2)) {
+                    if (number % divider == 0) {
+                        simpleNumber = false;
+                        break;
+                    };
+                    divider = ++divider;
+                }
+                if (simpleNumber == true) {
+                    arr.push(number);
+                };
+                number = ++number;
+            }
+            alert("Массив простых числел от  2 до 100 получился: " + arr);
+            //LESSON 3 task 2 -task 3
+            var cart = [
+                {
+                    name: "Яблоки"
+                    , quantity: +(Math.random() * 10).toFixed(0)
+                    , price: +(Math.random() * 1000).toFixed(2)
+                , }
+                , {
+                    name: "Груши"
+                    , quantity: +(Math.random() * 10).toFixed(0)
+                    , price: +(Math.random() * 1000).toFixed(2)
+                , }
+                , {
+                    name: "Апельсины"
+                    , quantity: +(Math.random() * 10).toFixed(0)
+                    , price: +(Math.random() * 1000).toFixed(2)
+                , }
+                , {
+                    name: "Бананы"
+                    , quantity: +(Math.random() * 10).toFixed(0)
+                    , price: +(Math.random() * 1000).toFixed(2)
+                , }
+                , {
+                    name: "Арбуз"
+                    , quantity: +(Math.random() * 10).toFixed(0)
+                    , price: +(Math.random() * 1000).toFixed(2)
+                , }
+];
+            for (var card of cart) {
+                document.write(card.name + "    Цена: " + card.price + " руб. Количество: " + card.quantity + " кг. <br>")
+            };
+
+            function countBasketPrice(arr) {
+                var sum = 0;
+                for (var card of arr) {
+                    sum += card.price * card.quantity;
+                }
+                return (sum);
+            };
+            document.write("Стоимость корзины = " + countBasketPrice(cart).toFixed(2) + " руб.<br><br>");
+            document.write("ЗАДАЧА № 4 И ЗАДАЧА №5 выведены в console.log");
+            //LESSON 3 task 4
+            for (var i = 0; i < 10; console.log(i++));
+            //LESSON 3 task 5
+            var picture = "x";
+            for (var i = 1; i < 21; i++) {
+                console.log(picture);
+                picture += "x";
+            };
+            /*
             //LESSON 1 task 1
             var temperatureCelsius = +prompt("Укажите температуру в градусах по Цельсию:", 25);
             var temperatureFahrenheit = (9 / 5) * temperatureCelsius + 32;
@@ -136,6 +205,7 @@
                 power(val, pow);
                 alert("Заданы два случайных числа от 0 до 10, val = " + val + " pow = " + pow + "\n" + "Результат возведения val в степень pow равен " + result);
             };
+            */
         </script>
     </body>
 
