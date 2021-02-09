@@ -4,208 +4,180 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>First_lesson</title>
+    <title>lesson</title>
 
     <body>
         <script>
-            //LESSON 3 task 1
-            var number = 3;
-            var arr = [2];
-            while (number <= 100) {
-                var divider = 2;
-                var simpleNumber = true;
-                while (divider < (number / 2)) {
-                    if (number % divider == 0) {
-                        simpleNumber = false;
+            //LESSON 4 task 1
+            var userNumber;
+            do {
+                userNumber = prompt("Введите число от 0 до 999: ", 888);
+                if (isNaN(userNumber)) alert("Вы ввели нечисловое значение")
+                else if (userNumber < 0) alert("Вы ввели отрицательное число")
+                else if (userNumber.length > 3) alert("Вы ввели число превышающе 3 знака")
+                else break;
+            } while (true);
+
+            function ChangeInToObject(number) {
+                this.units = number[0];
+                if (number.length > 1) this.dozens = number[1];
+                if (number.length > 2) this.hundreds = number[2];
+            };
+            var newNumber = new ChangeInToObject(userNumber);
+            document.write("Ваше значение предобразовано в объект:" + newNumber.units);
+            if (newNumber.dozens !== undefined) document.write(" " + newNumber.dozens);
+            if (newNumber.hundreds !== undefined) document.write(" " + newNumber.hundreds);
+            //LESSON 4 task 2
+            var works = {
+                a00: 'Вы живёте в тихой и уютной деревеньке на окрайне страны.\n' + 'Здесь есть практчески всё: речка, лес, горы, озеро, луга и поля, есть даже школа в соседнем селе.\n' + 'Сейчас начало лета, воскресенье, раннее утро, Вы просыпаетесь и собираетесь ...\n'
+                , a0: 2
+                , a1: '1 - Поспать до обеда\n'
+                , a2: '2 - Пойти прогуляться\n'
+                , b00: 'Вы решили поспать до обеда.\n' + 'После того как Вы проснулись первое, что вы ощутили, это приятный запах, который шёл с кухни.\n' + 'После Вы замечаете, какая за окном прекрасная погода, и Вы думаете ...\n'
+                , b0: 2
+                , b1: '1 - Пойти прогуляться\n'
+                , b2: '2 - Пойти пообедать\n'
+                , c00: 'Вы решили пойти прогуляться.\n' + 'Вы выходите из своего дома и видите прекрасный рассвет, блики солнца так и играют на озёрной глади.\n' + 'Вы решаете дойти до озера, полюбоваться его красотойю\n' + 'С одной стороны тропинки Вы видите пшеничное поле, за которым веднеется лес.\n' + 'С другой стороны течёт речка, а в далеке виднеются горы.\n' + 'Вы наслаждаетесь пейзажами и не замечаете как летит время.\n' + 'Домой Вы приходите только к обеду, но до обеда ещё есть время и Вы решаете ...\n'
+                , c0: 2
+                , c1: '1 - Подождать обед в столовой\n'
+                , c2: '2 - Поколоть дров перед обедом\n'
+                , d00: 'Здесь пишем текст повествования.\n' + 'Потом пишем несколько действий, например, два\n'
+                , d0: 2
+                , d1: '1 - 1-й ответ\n'
+                , d2: '2 - 2-й ответ\n'
+            , };
+            var event;
+            var answers = [];
+
+            function windowOfQuestion(nextQuestion, answer1, answer2, quantityAnswers) {
+                do {
+                    event = +prompt(nextQuestion + answer1 + answer2 + '-1 - Выход из игры');
+                    if (event == -1) {
                         break;
-                    };
-                    divider = ++divider;
-                }
-                if (simpleNumber == true) {
-                    arr.push(number);
-                };
-                number = ++number;
-            }
-            alert("Массив простых числел от  2 до 100 получился: " + arr);
-            //LESSON 3 task 2 -task 3
-            var cart = [
-                {
-                    name: "Яблоки"
-                    , quantity: +(Math.random() * 10).toFixed(0)
-                    , price: +(Math.random() * 1000).toFixed(2)
-                , }
-                , {
-                    name: "Груши"
-                    , quantity: +(Math.random() * 10).toFixed(0)
-                    , price: +(Math.random() * 1000).toFixed(2)
-                , }
-                , {
-                    name: "Апельсины"
-                    , quantity: +(Math.random() * 10).toFixed(0)
-                    , price: +(Math.random() * 1000).toFixed(2)
-                , }
-                , {
-                    name: "Бананы"
-                    , quantity: +(Math.random() * 10).toFixed(0)
-                    , price: +(Math.random() * 1000).toFixed(2)
-                , }
-                , {
-                    name: "Арбуз"
-                    , quantity: +(Math.random() * 10).toFixed(0)
-                    , price: +(Math.random() * 1000).toFixed(2)
-                , }
-];
-            for (var card of cart) {
-                document.write(card.name + "    Цена: " + card.price + " руб. Количество: " + card.quantity + " кг. <br>")
+                    }
+                    else if (isNaN(event)) {
+                        alert('Вы ввели недопустимый символ');
+                    }
+                    else if (event < 1 || event > quantityAnswers) {
+                        alert('Ваше число выходит из допустимого диапозона');
+                    }
+                    else if (event == 1) {
+                        answers.push({
+                            quetion: nextQuestion
+                            , answer: answer1
+                        });
+                        break;
+                    }
+                    else {
+                        answers.push({
+                            quetion: nextQuestion
+                            , answer: answer2
+                        });
+                        break;
+                    }
+                } while (true);
             };
-
-            function countBasketPrice(arr) {
-                var sum = 0;
-                for (var card of arr) {
-                    sum += card.price * card.quantity;
-                }
-                return (sum);
-            };
-            document.write("Стоимость корзины = " + countBasketPrice(cart).toFixed(2) + " руб.<br><br>");
-            document.write("ЗАДАЧА № 4 И ЗАДАЧА №5 выведены в console.log");
-            //LESSON 3 task 4
-            for (var i = 0; i < 10; console.log(i++));
-            //LESSON 3 task 5
-            var picture = "x";
-            for (var i = 1; i < 21; i++) {
-                console.log(picture);
-                picture += "x";
-            };
-            /*
-            //LESSON 1 task 1
-            var temperatureCelsius = +prompt("Укажите температуру в градусах по Цельсию:", 25);
-            var temperatureFahrenheit = (9 / 5) * temperatureCelsius + 32;
-            alert("Температура по Фаренгейту составит: " + temperatureFahrenheit + " градусов!");
-            //LESSON 1 task 2
-            var firstVariable = +prompt("Укажите первое число:", 50);
-            var secondVariable = +prompt("Укажите второе число:", 70);
-            firstVariable = firstVariable + secondVariable;
-            secondVariable = firstVariable - secondVariable;
-            firstVariable = firstVariable - secondVariable;
-            alert("Первое число поменяло значение и стало:  " + firstVariable + "\n" + " Второе число поменяло значение и стало: " + secondVariable);
-            //LESSON 1 task 3
-            var name = "Василий";
-            var admin;
-            admin = name;
-            alert("Переменная admin приобрела значение:  " + admin);
-            //LESSON 2 task 3
-            var a = +prompt("Задайте значение первой переменной", 5);
-            var b = +prompt("Задайте значение второй переменной", 10);
-            if (a >= 0 && b >= 0) {
-                alert("Обе переменные положительные (>=0), а = " + a + " b = " + b + "\n" + " Их разность составит:  " + (a - b));
-            }
-            else if (a < 0 && b < 0) {
-                alert("Обе переменные отрицательные (<0), а = " + a + " b = " + b + "\n" + " Их произведение составит :  " + (a * b));
-            }
-            else {
-                alert("Переменные разных знаков, а = " + a + " b = " + b + "\n" + " Их сумма составит :  " + (a + b));
-            };
-            //LESSON 2 task 4
-            a = (Math.random() * 15).toFixed(0);
-            alert("Задана случайная переменная от 0 до 15, а = " + a + "\n" + " Нажмите \"ОК\" для вывода чисел от а до 15");
-            var b = "";
-            switch (a) {
-            case "0":
-                b = b + "0, ";
-            case "1":
-                b = b + "1, ";
-            case "2":
-                b = b + "2, ";
-            case "3":
-                b = b + "3, ";
-            case "4":
-                b = b + "4, ";
-            case "5":
-                b = b + "5, ";
-            case "6":
-                b = b + "6, ";
-            case "7":
-                b = b + "7, ";
-            case "8":
-                b = b + "8, ";
-            case "9":
-                b = b + "9, ";
-            case "10":
-                b = b + "10, ";
-            case "11":
-                b = b + "11, ";
-            case "12":
-                b = b + "12, ";
-            case "13":
-                b = b + "13, ";
-            case "14":
-                b = b + "14, ";
-            case "15":
-                b = b + "15";
-            };
-            alert("Последовательность от а = " + a + " до 15 составит: " + b);
-            //LESSON 2 task 5
-            function addition(a, b) {
-                return (a + b);
-            };
-
-            function subtraction(a, b) {
-                return (a - b);
-            };
-
-            function multiplication(a, b) {
-                return (a * b);
-            };
-
-            function division(a, b) {
-                return (a / b);
-            };
-            //LESSON 2 task 6
-            function mathOperation(arg1, arg2, operation) {
-                switch (operation) {
-                case "+":
-                    alert("Сумма чисел а" + arg1 + "и b " + arg2 + "равна " + addition(arg1, arg2));
+            windowOfQuestion(works.a00, works.a1, works.a2, works.a0);
+            switch (event) {
+            case 1:
+                windowOfQuestion(works.b00, works.b1, works.b2, works.b0);
+                switch (event) {
+                case 1:
+                    windowOfQuestion(works.d00, works.d1, works.d2, works.d0);
                     break;
-                case "-":
-                    alert("Разность чисел а и b равна " + subtraction(arg1, arg2));
+                case 2:
+                    windowOfQuestion(works.d00, works.d1, works.d2, works.d0);
                     break;
-                case "*":
-                    alert("Произведение чисел а и b равно " + multiplication(arg1, arg2));
-                    break;
-                case "/":
-                    alert("Результат деления числа а на число b равен " + division(arg1, arg2));
+                case -1:
                     break;
                 default:
-                    alert("Вы ввели неверный арифметический знак");
+                    alert('Ошибка');
                 };
-            }
-            a = +(Math.random() * 200 - 100).toFixed(0);
-            b = +(Math.random() * 200 - 100).toFixed(0);
-            var operation = prompt("Заданы две случайные переменные от -100 до 100, а = " + a + " b = " + b + " Укажите арифметическое действие (+ - * /), которое необходимо с ними выполнить:");
-            mathOperation(a, b, operation);
-            //LESSON 2 task 8
-            function power(val, pow) {
-                if (pow == 0) {
-                    return (result);
+                break;
+            case 2:
+                windowOfQuestion(works.c00, works.c1, works.c2, works.c0);
+                switch (event) {
+                case 1:
+                    windowOfQuestion(works.d00, works.d1, works.d2, works.d0);
+                    break;
+                case 2:
+                    windowOfQuestion(works.d00, works.d1, works.d2, works.d0);
+                    break;
+                case -1:
+                    break;
+                default:
+                    alert('Ошибка');
+                };
+                break;
+            case -1:
+                break;
+            default:
+                alert('Ошибка');
+            };
+            event = +prompt("Введите номер вопроса, который Вы хотите повторно увидеть (1-4): ");
+            alert("Вопрос:  " + answers[event - 1].quetion + "Ваш ответ: " + answers[event - 1].answer);
+            //LESSON 4 task 3
+            var millioner = [
+                {
+                    quetion: 'Зимой и летом одним цветом\n'
+                    , answer1: '1 - Елка\n'
+                    , answer2: '2 - Светофор\n'
+                    , answer3: '3 - Береза\n'
+                    , answer4: '4 - Небо\n'
+                    , correctAnswer: 1
+                    , price: 200
                 }
-                result = result * val;
-                pow = --pow;
-                power(val, pow)
+                , {
+                    quetion: 'Кто в малине знает толк? Косолапый, бурый......\n'
+                    , answer1: '1 - Волк\n'
+                    , answer2: '2 - Медведь\n'
+                    , answer3: '3 - Колобок\n'
+                    , answer4: '4 - Кощей Бессмертный\n'
+                    , correctAnswer: 2
+                    , price: 300
+                }
+                , {
+                    quetion: 'Сам алый, сахарный, Кафтан зеленый, бархатный.......\n'
+                    , answer1: '1 - Арбуз\n'
+                    , answer2: '2 - Ананас\n'
+                    , answer3: '3 - Дед Мороз\n'
+                    , answer4: '4 - Пингвин\n'
+                    , correctAnswer: 1
+                    , price: 400
+                }
+, ];
+            var sum = 0;
+
+            function millionerQuestion(nextQuestion) {
+                do {
+                    event = +prompt(nextQuestion.quetion + nextQuestion.answer1 + nextQuestion.answer2 + nextQuestion.answer3 + nextQuestion.answer4 + '-1 - Выход из игры');
+                    if (event == -1) {
+                        break;
+                    }
+                    else if (isNaN(event)) {
+                        alert('Вы ввели недопустимый символ');
+                    }
+                    else if (event < 1 || event > 4) {
+                        alert('Ваше число выходит из допустимого диапозона');
+                    }
+                    else if (event == nextQuestion.correctAnswer) {
+                        sum += nextQuestion.price;
+                        alert("Вы угадали ответ, сумма выигрыша на этом этапе: " + nextQuestion.price + " руб.\n" + "Всего в игре: " + sum + " руб.");
+                        break;
+                    }
+                    else {
+                        alert("Вы не угадали ответ. Текущая сумма выигрыша: " + sum + " руб.");
+                        break;
+                    }
+                } while (true);
             };
-            var val = +(Math.random() * 10).toFixed(0);
-            var pow = +(Math.random() * 10).toFixed(0);
-            if (pow == 0) {
-                alert("Заданы два случайных числа от 0 до 10, val = " + val + " pow = " + pow + "\n" + "Результат возведения val в степень pow равен 1");
-            }
-            else if (val == 0) {
-                alert("Заданы два случайных числа от 0 до 10, val = " + val + " pow = " + pow + "\n" + "Результат возведения val в степень pow равен 0");
-            }
-            else {
-                var result = 1;
-                power(val, pow);
-                alert("Заданы два случайных числа от 0 до 10, val = " + val + " pow = " + pow + "\n" + "Результат возведения val в степень pow равен " + result);
+            for (var i = 0; i < millioner.length; i++) {
+                millionerQuestion(millioner[i]);
+                if (event == -1) {
+                    break;
+                }
             };
-            */
+            alert("Игра окончена. Ваш выигрыш: " + sum + " руб.");
         </script>
     </body>
 
