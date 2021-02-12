@@ -7,177 +7,67 @@
     <title>lesson</title>
 
     <body>
+        <div id="chess"> </div>
         <script>
-            //LESSON 4 task 1
-            var userNumber;
-            do {
-                userNumber = prompt("Введите число от 0 до 999: ", 888);
-                if (isNaN(userNumber)) alert("Вы ввели нечисловое значение")
-                else if (userNumber < 0) alert("Вы ввели отрицательное число")
-                else if (userNumber.length > 3) alert("Вы ввели число превышающе 3 знака")
-                else break;
-            } while (true);
+            var table = document.createElement("table");
+            table.style.width = "1000px";
+            table.style.height = "1000px";
+            var tr, td, picture;
+            var alf = "HGFEDCBA";
+            var boxColor = "#FFFFFF";
+            var chessFigure = ["&#9820;", "&#9822;", "&#9821;", "&#9819;", "&#9818;", "&#9821;", "&#9822;", "&#9820;", "&#9814;", "&#9816;", "&#9815;", "&#9813;", "&#9812;", "&#9815;", "&#9816;", "&#9814;"];
 
-            function ChangeInToObject(number) {
-                this.units = number[0];
-                if (number.length > 1) this.dozens = number[1];
-                if (number.length > 2) this.hundreds = number[2];
+            function newTr() {
+                tr = document.createElement("tr");
+                table.append(tr);
             };
-            var newNumber = new ChangeInToObject(userNumber);
-            document.write("Ваше значение предобразовано в объект:" + newNumber.units);
-            if (newNumber.dozens !== undefined) document.write(" " + newNumber.dozens);
-            if (newNumber.hundreds !== undefined) document.write(" " + newNumber.hundreds);
-            //LESSON 4 task 2
-            var works = {
-                a00: 'Вы живёте в тихой и уютной деревеньке на окрайне страны.\n' + 'Здесь есть практчески всё: речка, лес, горы, озеро, луга и поля, есть даже школа в соседнем селе.\n' + 'Сейчас начало лета, воскресенье, раннее утро, Вы просыпаетесь и собираетесь ...\n'
-                , a0: 2
-                , a1: '1 - Поспать до обеда\n'
-                , a2: '2 - Пойти прогуляться\n'
-                , b00: 'Вы решили поспать до обеда.\n' + 'После того как Вы проснулись первое, что вы ощутили, это приятный запах, который шёл с кухни.\n' + 'После Вы замечаете, какая за окном прекрасная погода, и Вы думаете ...\n'
-                , b0: 2
-                , b1: '1 - Пойти прогуляться\n'
-                , b2: '2 - Пойти пообедать\n'
-                , c00: 'Вы решили пойти прогуляться.\n' + 'Вы выходите из своего дома и видите прекрасный рассвет, блики солнца так и играют на озёрной глади.\n' + 'Вы решаете дойти до озера, полюбоваться его красотойю\n' + 'С одной стороны тропинки Вы видите пшеничное поле, за которым веднеется лес.\n' + 'С другой стороны течёт речка, а в далеке виднеются горы.\n' + 'Вы наслаждаетесь пейзажами и не замечаете как летит время.\n' + 'Домой Вы приходите только к обеду, но до обеда ещё есть время и Вы решаете ...\n'
-                , c0: 2
-                , c1: '1 - Подождать обед в столовой\n'
-                , c2: '2 - Поколоть дров перед обедом\n'
-                , d00: 'Здесь пишем текст повествования.\n' + 'Потом пишем несколько действий, например, два\n'
-                , d0: 2
-                , d1: '1 - 1-й ответ\n'
-                , d2: '2 - 2-й ответ\n'
-            , };
-            var event;
-            var answers = [];
 
-            function windowOfQuestion(nextQuestion, answer1, answer2, quantityAnswers) {
-                do {
-                    event = +prompt(nextQuestion + answer1 + answer2 + '-1 - Выход из игры');
-                    if (event == -1) {
-                        break;
-                    }
-                    else if (isNaN(event)) {
-                        alert('Вы ввели недопустимый символ');
-                    }
-                    else if (event < 1 || event > quantityAnswers) {
-                        alert('Ваше число выходит из допустимого диапозона');
-                    }
-                    else if (event == 1) {
-                        answers.push({
-                            quetion: nextQuestion
-                            , answer: answer1
-                        });
-                        break;
-                    }
-                    else {
-                        answers.push({
-                            quetion: nextQuestion
-                            , answer: answer2
-                        });
-                        break;
-                    }
-                } while (true);
+            function newTd() {
+                td = document.createElement("td");
+                tr.append(td);
+                td.style.textAlign = "center";
             };
-            windowOfQuestion(works.a00, works.a1, works.a2, works.a0);
-            switch (event) {
-            case 1:
-                windowOfQuestion(works.b00, works.b1, works.b2, works.b0);
-                switch (event) {
-                case 1:
-                    windowOfQuestion(works.d00, works.d1, works.d2, works.d0);
-                    break;
-                case 2:
-                    windowOfQuestion(works.d00, works.d1, works.d2, works.d0);
-                    break;
-                case -1:
-                    break;
-                default:
-                    alert('Ошибка');
-                };
-                break;
-            case 2:
-                windowOfQuestion(works.c00, works.c1, works.c2, works.c0);
-                switch (event) {
-                case 1:
-                    windowOfQuestion(works.d00, works.d1, works.d2, works.d0);
-                    break;
-                case 2:
-                    windowOfQuestion(works.d00, works.d1, works.d2, works.d0);
-                    break;
-                case -1:
-                    break;
-                default:
-                    alert('Ошибка');
-                };
-                break;
-            case -1:
-                break;
-            default:
-                alert('Ошибка');
-            };
-            event = +prompt("Введите номер вопроса, который Вы хотите повторно увидеть (1-4): ");
-            alert("Вопрос:  " + answers[event - 1].quetion + "Ваш ответ: " + answers[event - 1].answer);
-            //LESSON 4 task 3
-            var millioner = [
-                {
-                    quetion: 'Зимой и летом одним цветом\n'
-                    , answer1: '1 - Елка\n'
-                    , answer2: '2 - Светофор\n'
-                    , answer3: '3 - Береза\n'
-                    , answer4: '4 - Небо\n'
-                    , correctAnswer: 1
-                    , price: 200
-                }
-                , {
-                    quetion: 'Кто в малине знает толк? Косолапый, бурый......\n'
-                    , answer1: '1 - Волк\n'
-                    , answer2: '2 - Медведь\n'
-                    , answer3: '3 - Колобок\n'
-                    , answer4: '4 - Кощей Бессмертный\n'
-                    , correctAnswer: 2
-                    , price: 300
-                }
-                , {
-                    quetion: 'Сам алый, сахарный, Кафтан зеленый, бархатный.......\n'
-                    , answer1: '1 - Арбуз\n'
-                    , answer2: '2 - Ананас\n'
-                    , answer3: '3 - Дед Мороз\n'
-                    , answer4: '4 - Пингвин\n'
-                    , correctAnswer: 1
-                    , price: 400
-                }
-, ];
-            var sum = 0;
 
-            function millionerQuestion(nextQuestion) {
-                do {
-                    event = +prompt(nextQuestion.quetion + nextQuestion.answer1 + nextQuestion.answer2 + nextQuestion.answer3 + nextQuestion.answer4 + '-1 - Выход из игры');
-                    if (event == -1) {
-                        break;
-                    }
-                    else if (isNaN(event)) {
-                        alert('Вы ввели недопустимый символ');
-                    }
-                    else if (event < 1 || event > 4) {
-                        alert('Ваше число выходит из допустимого диапозона');
-                    }
-                    else if (event == nextQuestion.correctAnswer) {
-                        sum += nextQuestion.price;
-                        alert("Вы угадали ответ, сумма выигрыша на этом этапе: " + nextQuestion.price + " руб.\n" + "Всего в игре: " + sum + " руб.");
-                        break;
-                    }
-                    else {
-                        alert("Вы не угадали ответ. Текущая сумма выигрыша: " + sum + " руб.");
-                        break;
-                    }
-                } while (true);
+            function createPicture(x) {
+                picture = document.createElement("h1");
+                picture.innerHTML = x;
+                td.append(picture);
             };
-            for (var i = 0; i < millioner.length; i++) {
-                millionerQuestion(millioner[i]);
-                if (event == -1) {
-                    break;
+            newTr();
+            newTd();
+            for (var j = 1; j < 9; j++) {
+                newTd();
+                td.innerText = alf[j - 1];
+                td.style.transform = "rotate(180deg)";
+            }
+            for (var j = 1; j < 9; j++) {
+                newTr();
+                newTd();
+                td.innerText = 9 - j;
+                for (var i = 1; i < 9; i++) {
+                    newTd();
+                    td.style.backgroundColor = boxColor;
+                    if (j == 1) createPicture(chessFigure[i - 1]);
+                    if (j == 2) createPicture("&#9823;");
+                    if (j == 7) createPicture("&#9817;");
+                    if (j == 8) createPicture(chessFigure[i + 7]);
+                    if (boxColor == "#FFFFFF") boxColor = "#964B00"
+                    else boxColor = "#FFFFFF";
                 }
-            };
-            alert("Игра окончена. Ваш выигрыш: " + sum + " руб.");
+                newTd();
+                td.innerText = 9 - j;
+                td.style.transform = "rotate(180deg)";
+                if (boxColor == "#FFFFFF") boxColor = "#964B00"
+                else boxColor = "#FFFFFF";
+            }
+            newTr();
+            newTd();
+            alf = "ABCDEFGH";
+            for (var j = 1; j < 9; j++) {
+                newTd();
+                td.innerText = alf[j - 1];
+            }
+            document.getElementById("chess").append(table);
         </script>
     </body>
 
