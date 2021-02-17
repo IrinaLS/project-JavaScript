@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Урок 6 Задание3</title>
+    <link rel="stylesheet" href="./css/style.css"> </head>
+
+<body>
+    <ul id="slides">
+        <li><img id="arrow-1" src="./img/pic-left.jpg"></li>
+        <li class="slide showing"><img src="./img/pik-slide.jpg" alt="pic"></li>
+        <li class="slide"><img src="./img/pik-slide1.jpg" alt="pic"></li>
+        <li class="slide"><img src="./img/pik-slide2.jpg" alt="pic"></li>
+        <li class="slide"><img src="./img/pik-slide3.jpg" alt="pic"></li>
+        <li class="slide"><img src="./img/pik-slide4.jpg" alt="pic"></li>
+        <li><img id="arrow-2" src="./img/pic-right.jpg" alt="pic"></li>
+    </ul>
+    <script>
+        var oldSlide = 0;
+        var newSlide = 0;
+        var slides = document.querySelectorAll("#slides .slide");
+        var arrowRight = document.getElementById("arrow-2");
+        var arrowLeft = document.getElementById("arrow-1");
+        arrowRight.onclick = nextSlide;
+        arrowLeft.onclick = nextSlide;
+
+        function nextSlide(e) {
+            if (((e.target.id.split("")[6]) == 1) && oldSlide == 0) {
+                return
+            };
+            if (((slides.length) - oldSlide) == 1 && ((e.target.id.split("")[6]) == 2)) {
+                return
+            };
+            if (e.target.id.split("")[6] == 1) newSlide = oldSlide - 1;
+            if (e.target.id.split("")[6] == 2) newSlide = oldSlide + 1;
+            slides[oldSlide].className = 'slide';
+            slides[newSlide].className = 'slide showing';
+            oldSlide = newSlide;
+        }
+    </script>
+</body>
+
+</html>

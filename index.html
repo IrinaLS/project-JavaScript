@@ -2,73 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>lesson</title>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" href="./css/style.css"> </head>
 
-    <body>
-        <div id="chess"> </div>
-        <script>
-            var table = document.createElement("table");
-            table.style.width = "1000px";
-            table.style.height = "1000px";
-            var tr, td, picture;
-            var alf = "HGFEDCBA";
-            var boxColor = "#FFFFFF";
-            var chessFigure = ["&#9820;", "&#9822;", "&#9821;", "&#9819;", "&#9818;", "&#9821;", "&#9822;", "&#9820;", "&#9814;", "&#9816;", "&#9815;", "&#9813;", "&#9812;", "&#9815;", "&#9816;", "&#9814;"];
+<body>
+<div class="goods">
+ <a href="task1.html" class="goods__box"> Задание 1</a>
+ <a href="task2.html" class="goods__box"> Задание 2</a>
+ <a href="task3.html" class="goods__box"> Задание 3</a>
+</div>
 
-            function newTr() {
-                tr = document.createElement("tr");
-                table.append(tr);
-            };
-
-            function newTd() {
-                td = document.createElement("td");
-                tr.append(td);
-                td.style.textAlign = "center";
-            };
-
-            function createPicture(x) {
-                picture = document.createElement("h1");
-                picture.innerHTML = x;
-                td.append(picture);
-            };
-            newTr();
-            newTd();
-            for (var j = 1; j < 9; j++) {
-                newTd();
-                td.innerText = alf[j - 1];
-                td.style.transform = "rotate(180deg)";
-            }
-            for (var j = 1; j < 9; j++) {
-                newTr();
-                newTd();
-                td.innerText = 9 - j;
-                for (var i = 1; i < 9; i++) {
-                    newTd();
-                    td.style.backgroundColor = boxColor;
-                    if (j == 1) createPicture(chessFigure[i - 1]);
-                    if (j == 2) createPicture("&#9823;");
-                    if (j == 7) createPicture("&#9817;");
-                    if (j == 8) createPicture(chessFigure[i + 7]);
-                    if (boxColor == "#FFFFFF") boxColor = "#964B00"
-                    else boxColor = "#FFFFFF";
-                }
-                newTd();
-                td.innerText = 9 - j;
-                td.style.transform = "rotate(180deg)";
-                if (boxColor == "#FFFFFF") boxColor = "#964B00"
-                else boxColor = "#FFFFFF";
-            }
-            newTr();
-            newTd();
-            alf = "ABCDEFGH";
-            for (var j = 1; j < 9; j++) {
-                newTd();
-                td.innerText = alf[j - 1];
-            }
-            document.getElementById("chess").append(table);
-        </script>
-    </body>
+</body>
 
 </html>
