@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Урок 6 Задание1</title>
+    <link rel="stylesheet" href="./css/style.css"> </head>
+
+<body>
+    <section class="picture">
+        <div class="picture__small">
+            <button type="button"><img id="s0" src="./img/pic-0.jpg"></button>
+        </div>
+        <div class="picture__small">
+            <button type="button"><img id="s1" src="./img/pic-1.jpg"></button>
+        </div>
+        <div class="picture__small">
+            <button type="button"><img id="s2" src="./img/pic-2.jpg"></button>
+        </div>
+    </section>
+    <script>
+        var imgList = document.querySelectorAll("button");
+        var img, src;
+
+        function fun(e) {
+            src = (parseInt(e.target.id.split("")[1]));
+            document.getElementById("s" + src).style.display = "none";
+            img = document.createElement("img");
+            img.id = "s" + src;
+            img.src = "./img/pic-" + (src + 3) + ".jpg";
+            img.onerror = function () {
+                alert("Error loading " + this.src);
+            };
+            imgList[src].append(img);
+        };
+        for (var i = 0; i < 3; i++) {
+            imgList[i].onclick = fun;
+        };
+    </script>
+</body>
+
+</html>
